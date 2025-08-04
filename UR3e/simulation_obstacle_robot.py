@@ -153,8 +153,10 @@ def demo_with_obstacles(obstacle_type="simple"):
     sim.obstacles = ObstacleScene(scene_type=obstacle_type).create_obstacle_scene()
     sim.add_gui_sliders()
     while True:
-        x, y, z, Rx, Ry, Rz = sim.read_gui_sliders()
-        joint_angles = sim.calculate_ik([x, y, z], [Rx, Ry, Rz])
+        # x, y, z, Rx, Ry, Rz = sim.read_gui_sliders()
+        # joint_angles = sim.calculate_ik([x, y, z], [Rx, Ry, Rz])
+        joint_angles =    [-3.7882, -6.0999,  1.2657,  2.2038, -3.6492, -2.3216]
+        print("Joint Angles: ", joint_angles)
         sim.set_joint_angles(joint_angles)
         if sim.check_collisions():
             print("Collision detected!")
@@ -177,13 +179,16 @@ if __name__ == "__main__":
     print("1. Basic UR3e simulation")
     print("2. Simple obstacle scene")
     print("3. Complex obstacle scene")
-    choice = input("Enter 3: ").strip()
+    print("4. Ring and wall obstacle scene")
+    choice = input("Enter your choice: ").strip()
     if choice == "1":
         demo_simulation()
     elif choice == "2":
         demo_with_obstacles(obstacle_type="simple")
     elif choice == "3":
         demo_with_obstacles(obstacle_type="complex")
+    elif choice == "4":
+        demo_with_obstacles(obstacle_type="ring_and_wall")
     else:
         print("Invalid choice. Exiting.")
         exit(1)

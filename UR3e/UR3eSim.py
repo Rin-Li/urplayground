@@ -8,7 +8,7 @@ from datetime import datetime
 import pybullet_data
 from collections import namedtuple
 
-ROBOT_URDF_PATH = "./ur_e_description/urdf/ur3e.urdf"
+ROBOT_URDF_PATH = "/home/kklab-ur-robot/urplayground/UR3e/ur_e_description/urdf/ur3e.urdf"
 TABLE_URDF_PATH = os.path.join(pybullet_data.getDataPath(), "table/table.urdf")
 
 class AttrDict(dict):
@@ -20,7 +20,7 @@ class AttrDict(dict):
         del self[key]
 
 
-class UR5Sim():
+class UR3eSim():
   
     def __init__(self, camera_attached=False):
         pybullet.connect(pybullet.GUI)
@@ -135,7 +135,7 @@ class UR5Sim():
 
 def demo_simulation():
     """ Demo program showing how to use the sim """
-    sim = UR5Sim()
+    sim = UR3eSim()
     sim.add_gui_sliders()
     while True:
         x, y, z, Rx, Ry, Rz = sim.read_gui_sliders()
